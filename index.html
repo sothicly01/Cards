@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>일본 여행 카드 사용 가이드 · 2026.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A49; --ink-2:#4A5568; --ink-3:#8A94A6;
+    --paper:#F3F5F8; --card:#FFFFFF; --line:#DDE3EC;
+    --naver:#03A64A; --naver-bg:#E4F7EB;
+    --haru:#1E4E9C; --haru-bg:#E6EEF9;
+    --kb:#B8860B;  --kb-bg:#FBF3DC;
+    --jcb:#0E7C86; --jcb-bg:#DFF3F4;
+    --uber:#111111; --uber-bg:#ECECEC;
+    --lotte:#A0284A; --lotte-bg:#F8E5EC;
+    --money:#D33A2C;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+
+  header{padding:28px 0 20px;border-bottom:2px solid var(--ink)}
+  header .date{font-size:13px;color:var(--ink-3);margin:0 0 6px}
+  header h1{font-size:28px;line-height:1.2;margin:0 0 14px;font-weight:700;letter-spacing:-.02em}
+  header p{margin:0;color:var(--ink-2);max-width:56ch}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+  .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+  .c-naver{background:var(--naver-bg);color:var(--naver)}
+  .c-haru{background:var(--haru-bg);color:var(--haru)}
+  .c-kb{background:var(--kb-bg);color:var(--kb)}
+  .c-jcb{background:var(--jcb-bg);color:var(--jcb)}
+  .c-uber{background:var(--uber-bg);color:var(--uber)}
+  .c-lotte{background:var(--lotte-bg);color:var(--lotte)}
+
+  nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);
+    display:flex;gap:6px;overflow-x:auto;padding:12px 0;margin:0 -16px;padding-left:16px;padding-right:16px;
+    scrollbar-width:none;border-bottom:1px solid var(--line)}
+  nav::-webkit-scrollbar{display:none}
+  nav a{flex:none;padding:6px 12px;border-radius:8px;background:var(--card);border:1px solid var(--line);
+    color:var(--ink);text-decoration:none;font-size:13px;font-weight:500}
+  nav a:focus-visible{outline:2px solid var(--haru);outline-offset:2px}
+
+  section{margin-top:36px}
+  h2{font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
+  .sub{margin:0 0 14px;color:var(--ink-2);font-size:14px}
+
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:520px}
+  th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:14px}
+  th{font-weight:600;color:var(--ink-2);background:#F7F9FC;font-size:13px}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600}
+  .money{color:var(--money);font-weight:700;font-variant-numeric:tabular-nums}
+  .muted{color:var(--ink-3);font-size:13px}
+  .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600;margin:1px 4px 1px 0;white-space:nowrap}
+  .t-naver{background:var(--naver-bg);color:var(--naver)}
+  .t-haru{background:var(--haru-bg);color:var(--haru)}
+  .t-kb{background:var(--kb-bg);color:var(--kb)}
+  .t-jcb{background:var(--jcb-bg);color:var(--jcb)}
+  .t-uber{background:var(--uber-bg);color:var(--uber)}
+  .t-lotte{background:var(--lotte-bg);color:var(--lotte)}
+  .rank{display:inline-block;width:18px;color:var(--ink-3);font-size:12px}
+
+  .rule{background:var(--card);border-left:4px solid var(--ink);padding:14px 16px;border-radius:0 10px 10px 0;margin-top:14px}
+  .rule strong{display:block;margin-bottom:6px}
+  .rule ol,.rule ul{margin:0;padding-left:20px}
+  .rule li{margin:4px 0}
+
+  .budget{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:14px}
+  .bcell{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .bcell .tot{font-size:13px;color:var(--ink-3)}
+  .bcell .split{font-size:13px;margin:6px 0;line-height:1.7}
+  .bcell .out{font-size:20px;font-weight:700;color:var(--money);font-variant-numeric:tabular-nums}
+  .bcell .out small{font-size:12px;color:var(--ink-3);font-weight:500}
+
+  .check{list-style:none;padding:0;margin:14px 0 0}
+  .check li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px 12px 44px;margin-bottom:8px;position:relative}
+  .check li::before{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;border:2px solid var(--ink);border-radius:4px}
+
+  .cards{display:flex;gap:12px;overflow-x:auto;padding:4px 0 10px;margin:14px -16px 0;padding-left:16px;padding-right:16px;scrollbar-width:none}
+  .cards::-webkit-scrollbar{display:none}
+  .cc{flex:none;width:200px;height:124px;border-radius:12px;padding:14px;color:#fff;position:relative;
+    display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+  .cc .nm{font-weight:700;font-size:15px;line-height:1.25}
+  .cc .nt{font-size:11px;opacity:.85}
+  .cc .chipx{width:26px;height:19px;border-radius:4px;background:linear-gradient(135deg,#F6E3A1,#C9A24A);position:absolute;right:14px;top:14px}
+  .cc .mx{font-size:12px;font-weight:600;opacity:.9}
+  .cc-naver{background:linear-gradient(135deg,#0BBF59,#037A3A)}
+  .cc-haru{background:linear-gradient(135deg,#5B8FD9,#173E7E)}
+  .cc-kb{background:linear-gradient(135deg,#F2CB4E,#A8730A);color:#2B2100}
+  .cc-lotte{background:linear-gradient(135deg,#3A3A42,#111114)}
+  .cc-kb .nt{opacity:.8}
+
+  .track{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:14px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+  .frow .full{grid-column:1/-1}
+  label.f{display:block;font-size:12px;color:var(--ink-3);margin-bottom:3px}
+  select,input[type=number],input[type=text],input[type=date]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;
+    background:var(--paper);color:var(--ink);font:inherit;font-size:15px}
+  select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--haru);outline-offset:1px}
+  .btn{padding:10px 14px;border-radius:8px;border:none;background:var(--ink);color:var(--paper);font:inherit;font-weight:600;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.sm{padding:5px 9px;font-size:12px}
+  .rate{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);margin-top:6px}
+  .rate input{width:90px}
+  .sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+  .sum .bcell .out{font-size:18px}
+  .sum .bcell .nxt{font-size:12px;color:var(--ink-3);margin-top:4px;line-height:1.4}
+  .sum .total{grid-column:1/-1;border:2px solid var(--ink)}
+  .sum .total .out{font-size:26px}
+  .detail{margin-top:10px;font-size:13px;color:var(--ink-2)}
+  .detail li{margin:2px 0}
+  .log td{font-size:13px;padding:8px 10px}
+  .log td:first-child{font-weight:500}
+  .empty{padding:18px;text-align:center;color:var(--ink-3);font-size:13px}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:12px;background:var(--paper);color:var(--ink)}
+
+  footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12px}
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#E8ECF3;--ink-2:#B4BCCB;--ink-3:#7F8A9E;--paper:#12161E;--card:#1B212C;--line:#2C3442;
+      --naver-bg:#123D25;--haru-bg:#16294A;--kb-bg:#3C2F0C;--jcb-bg:#0F3336;--uber-bg:#2A2A2A;--uber:#E8ECF3;--lotte-bg:#3E1424;--lotte:#F08AA8;
+      --naver:#4FD683;--haru:#7FA7E8;--kb:#E4BE4A;--jcb:#4FC1C9;--money:#FF7A6E}
+    th{background:#222A38}
+  }
+  :root[data-theme="dark"]{
+    --ink:#E8ECF3;--ink-2:#B4BCCB;--ink-3:#7F8A9E;--paper:#12161E;--card:#1B212C;--line:#2C3442;
+    --naver-bg:#123D25;--haru-bg:#16294A;--kb-bg:#3C2F0C;--jcb-bg:#0F3336;--uber-bg:#2A2A2A;--uber:#E8ECF3;--lotte-bg:#3E1424;--lotte:#F08AA8;
+    --naver:#4FD683;--haru:#7FA7E8;--kb:#E4BE4A;--jcb:#4FC1C9;--money:#FF7A6E}
+  :root[data-theme="dark"] th{background:#222A38}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="date">2026년 10월 교토 · 카드 5장 기준 · 응모 전부 완료</p>
+  <h1>일본 여행 카드 사용 가이드</h1>
+  <p>어느 매장에서 어떤 카드로 얼마를 쓰면 환급이 가장 큰지, 카테고리별로 정리했습니다. 원칙은 하나 — 정액 혜택 매장은 지정 카드, 나머지는 누적 티어를 채우는 카드.</p>
+  <div class="legend">
+    <span class="chip c-naver">네이버 머니카드</span>
+    <span class="chip c-haru">신한 Haru (JCB)</span>
+    <span class="chip c-jcb">JCB 가맹점 캐시백</span>
+    <span class="chip c-kb">KB국민 Visa</span>
+    <span class="chip c-lotte">롯데 Mastercard</span>
+    <span class="chip c-uber">Uber 코드</span>
+  </div>
+</header>
+
+<nav aria-label="바로가기">
+  <a href="#tracker">내 결제 기록</a>
+  <a href="#cards">카드 요약</a>
+  <a href="#transport">교통</a>
+  <a href="#food">식사</a>
+  <a href="#cvs">편의점</a>
+  <a href="#shop">쇼핑</a>
+  <a href="#stay">숙박·온라인</a>
+  <a href="#budget">총액별 배분</a>
+  <a href="#check">출발 전 체크</a>
+</nav>
+
+<section id="tracker">
+  <h2>내 결제 기록</h2>
+  <p class="sub">결제할 때마다 적으면 카드별 예상 환급과 다음 구간까지 남은 금액을 계산합니다. 이 기기 브라우저에만 저장됩니다.</p>
+  <div class="track">
+    <div class="frow">
+      <div><label class="f" for="f-date">날짜</label><input type="date" id="f-date"></div>
+      <div><label class="f" for="f-card">카드</label>
+        <select id="f-card">
+          <option value="naver">네이버 머니카드</option>
+          <option value="haru">신한 Haru (JCB)</option>
+          <option value="lotte">롯데 Mastercard</option>
+          <option value="kb">KB국민 Visa</option>
+        </select></div>
+      <div class="full"><label class="f" for="f-cat">매장 · 카테고리</label>
+        <select id="f-cat">
+          <optgroup label="식사">
+            <option value="ichiran">이치란라멘</option>
+            <option value="sushiro">스시로</option>
+            <option value="komeda">코메다커피</option>
+            <option value="food">그 외 식당·카페</option>
+          </optgroup>
+          <optgroup label="편의점">
+            <option value="cvs">세븐일레븐·패밀리마트·로손</option>
+            <option value="cvs2">기타 편의점</option>
+          </optgroup>
+          <optgroup label="쇼핑">
+            <option value="donki">돈키호테</option>
+            <option value="uniqlo">유니클로</option>
+            <option value="kbfashion">GU·BAPE·CdG·BEAMS·HUMAN MADE·KAPITAL·STUSSY</option>
+            <option value="dept">백화점 (다이마루·파르코·한큐 교토)</option>
+            <option value="hankyu">백화점 (한큐·한신 우메다·고베·하카타·한큐맨즈)</option>
+            <option value="shop">그 외 쇼핑·드럭스토어</option>
+          </optgroup>
+          <optgroup label="교통">
+            <option value="go">택시앱 GO</option>
+            <option value="uber">Uber</option>
+            <option value="transit">택시·버스·지하철·IC</option>
+          </optgroup>
+          <optgroup label="숙박·기타">
+            <option value="stay">호텔·료칸·온라인 예약</option>
+            <option value="etc">기타 해외결제</option>
+          </optgroup>
+        </select></div>
+      <div><label class="f" for="f-amt">금액</label><input type="number" id="f-amt" inputmode="decimal" placeholder="0"></div>
+      <div><label class="f" for="f-cur">통화</label>
+        <select id="f-cur"><option value="JPY">엔 (¥)</option><option value="KRW">원 (₩)</option></select></div>
+      <div class="full"><label class="f" for="f-memo">메모 (선택)</label><input type="text" id="f-memo" placeholder="예: 교토역 지하 돈키"></div>
+    </div>
+    <button class="btn" id="f-add" type="button">기록 추가</button>
+    <div class="rate">환율 100엔 = <input type="number" id="f-rate" inputmode="decimal" step="1"> 원 <span class="muted">(카드 청구 기준으로 조정)</span></div>
+  </div>
+
+  <div class="sum" id="sum"></div>
+  <ul class="detail" id="detail"></ul>
+
+  <div class="tbl" style="margin-top:14px"><table class="log" id="log"><tbody></tbody></table></div>
+  <div class="tools">
+    <button class="btn ghost sm" id="t-export" type="button">백업 텍스트 보기</button>
+    <button class="btn ghost sm" id="t-import" type="button">백업 붙여넣어 복원</button>
+    <button class="btn ghost sm" id="t-clear" type="button">전체 삭제</button>
+  </div>
+  <div id="io" style="display:none;margin-top:8px"><textarea id="io-text"></textarea><div class="tools"><button class="btn sm" id="io-apply" type="button">복원 실행</button></div></div>
+</section>
+
+<section id="cards">
+  <h2>카드 요약</h2>
+  <p class="sub">기간·조건 한눈에 · 응모 전부 완료</p>
+  <div class="cards">
+    <div class="cc cc-naver"><div class="chipx"></div><div class="nm">네이버페이<br>머니카드</div><div><div class="mx">최대 20만원 페이백</div><div class="nt">~10/14 · 오프라인 실물결제</div></div></div>
+    <div class="cc cc-haru"><div class="chipx"></div><div class="nm">신한 Haru<br>Hoshino Resort · JCB</div><div><div class="mx">최대 10만 + JCB 9,000엔</div><div class="nt">온·오프라인 · 실물카드 지참</div></div></div>
+    <div class="cc cc-lotte"><div class="chipx"></div><div class="nm">롯데카드<br>Mastercard</div><div><div class="mx">최대 5만 네이버포인트</div><div class="nt">~10/31 · 해외 온·오프라인</div></div></div>
+    <div class="cc cc-kb"><div class="chipx"></div><div class="nm">KB국민<br>Visa</div><div><div class="mx">패션·백화점·돈키 상품권</div><div class="nt">~11/30 · 월 1회</div></div></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>카드</th><th>핵심 혜택</th><th>응모</th><th>기간·비고</th></tr>
+    <tr><td><span class="tag t-naver">네이버</span></td>
+        <td>첫 결제 <span class="money">1만</span> + 누적 50/100/150만 → <span class="money">2/5/10만</span> + 매장별 정액</td>
+        <td>완료</td>
+        <td>~10/14 · 오프라인만 · 예산 소진 시 조기종료</td></tr>
+    <tr><td><span class="tag t-haru">Haru</span></td>
+        <td>해외 누적 50만 → <span class="money">5만</span> / 100만 → <span class="money">10만</span> <span class="muted">(둘 중 하나)</span></td>
+        <td>완료</td>
+        <td>온·오프라인 모두 · 캐시백 11월말</td></tr>
+    <tr><td><span class="tag t-lotte">롯데 MC</span></td>
+        <td>해외 합산 10만 → <span class="money">1.5만</span> / 20만 → <span class="money">3만</span> / 40만 → <span class="money">5만</span> 포인트 <span class="muted">(최고 구간 1회)</span></td>
+        <td>완료</td>
+        <td>9/21~10/31 · 해외 가맹점 온·오프라인 · 네이버페이 포인트</td></tr>
+    <tr><td><span class="tag t-jcb">JCB</span></td>
+        <td>지정 매장 20%, 매장당 1,000~3,000엔 상한 <span class="muted">(합계 9,000엔)</span></td>
+        <td>불필요</td>
+        <td>Haru 실물카드 엔화 결제만 · 온라인 제외(GO앱 예외)</td></tr>
+    <tr><td><span class="tag t-kb">KB Visa</span></td>
+        <td>패션·백화점·돈키 정액 신세계상품권</td>
+        <td>완료</td>
+        <td>9/17~11/30 · 월 1회 · 원화환산 기준</td></tr>
+  </table></div>
+  <div class="rule"><strong>중복 여부</strong>
+    <ul>
+      <li>네이버 매장별 정액 + 네이버 누적 티어 → 같은 결제로 중복 인정</li>
+      <li>Haru 누적 + JCB 가맹점 캐시백 → 주최가 달라 통상 중복, 신한 고객센터에 확인 권장</li>
+      <li>Haru 50만·100만 티어 → 중복 불가, 최대 10만</li>
+      <li>롯데 10/20/40만 구간 → 최고 구간 1회, 최대 5만</li>
+    </ul>
+  </div>
+</section>
+
+<section id="transport">
+  <h2>교통</h2>
+  <p class="sub">앱 결제는 네이버 오프라인 누적에 안 잡히므로 롯데·Haru로. GO는 JCB 조건상 Haru 고정</p>
+  <div class="tbl"><table>
+    <tr><th>매장</th><th>카드 순서</th><th>조건 · 환급</th></tr>
+    <tr><td>Uber <span class="muted">(Uber 첫 사용)</span></td>
+        <td><span class="tag t-uber">코드 TSUKIMIRFT</span> + <span class="tag t-lotte">롯데 등록</span></td>
+        <td>50%, 최대 <span class="money">1,500엔</span>, 1회 · ~10/18</td></tr>
+    <tr><td>Uber <span class="muted">(기존 가입자)</span></td>
+        <td><span class="tag t-uber">코드 TSUKIMIERI</span> + <span class="tag t-lotte">롯데 등록</span></td>
+        <td>25%, 최대 <span class="money">500엔 × 2회</span> · ~10/18</td></tr>
+    <tr><td>택시앱 GO</td>
+        <td><span class="tag t-haru">Haru 신용 등록</span></td>
+        <td>합계 3,000엔↑ → 20%, 최대 <span class="money">1,000엔</span> <span class="muted">(JCB)</span></td></tr>
+    <tr><td>일반 택시 · 버스 · 지하철 · IC 충전</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> <span class="rank">2</span><span class="tag t-lotte">롯데</span> <span class="rank">3</span><span class="tag t-haru">Haru</span></td>
+        <td>누적 티어 채우기용</td></tr>
+  </table></div>
+</section>
+
+<section id="food">
+  <h2>식사</h2>
+  <p class="sub">정액 매장 3곳만 기억하면 됨</p>
+  <div class="tbl"><table>
+    <tr><th>매장</th><th>카드 순서</th><th>조건 · 환급</th></tr>
+    <tr><td>이치란라멘</td>
+        <td><span class="tag t-naver">네이버</span> 2만원↑</td>
+        <td><span class="money">1만원</span> (50%), 기간 내 1회</td></tr>
+    <tr><td>스시로</td>
+        <td><span class="rank">1</span><span class="tag t-haru">Haru</span> 4,000엔↑ <span class="rank">2</span><span class="tag t-naver">네이버</span> 초과분</td>
+        <td>20%, 최대 <span class="money">1,000엔</span> <span class="muted">(JCB)</span></td></tr>
+    <tr><td>코메다커피</td>
+        <td><span class="rank">1</span><span class="tag t-haru">Haru</span> 2,000엔↑ <span class="rank">2</span><span class="tag t-naver">네이버</span> 초과분</td>
+        <td>20%, 최대 <span class="money">1,000엔</span> <span class="muted">(JCB · 이온몰 교토점 제외)</span></td></tr>
+    <tr><td>그 외 식당 · 카페 · 이자카야</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> <span class="rank">2</span><span class="tag t-lotte">롯데</span> <span class="rank">3</span><span class="tag t-haru">Haru</span></td>
+        <td>누적 티어 채우기용</td></tr>
+  </table></div>
+</section>
+
+<section id="cvs">
+  <h2>편의점</h2>
+  <p class="sub">전부 네이버</p>
+  <div class="tbl"><table>
+    <tr><th>매장</th><th>카드</th><th>조건 · 환급</th></tr>
+    <tr><td>세븐일레븐 · 패밀리마트 · 로손</td>
+        <td><span class="tag t-naver">네이버</span></td>
+        <td>기간 내 누적 3만원↑ → <span class="money">1만원</span> (33%)</td></tr>
+    <tr><td>미니스톱 등 기타 편의점</td>
+        <td><span class="tag t-naver">네이버</span></td>
+        <td>누적 티어 채우기용</td></tr>
+  </table></div>
+</section>
+
+<section id="shop">
+  <h2>쇼핑</h2>
+  <p class="sub">돈키·유니클로·백화점은 네이버 한도 먼저, 초과분만 Haru·KB</p>
+
+  <div class="tbl"><table>
+    <tr><th colspan="3">잡화</th></tr>
+    <tr><th>매장</th><th>카드 순서</th><th>조건 · 환급</th></tr>
+    <tr><td>돈키호테</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> 10만원<br><span class="rank">2</span><span class="tag t-haru">Haru</span> 15,000엔<br><span class="rank">3</span><span class="tag t-kb">KB</span> 10만원</td>
+        <td><span class="money">2만원</span> / <span class="money">3,000엔</span> / <span class="money">2만원권</span> — 셋 다 20%<br><span class="muted">총 35만원↑ 쓸 때만 3장 분할</span></td></tr>
+  </table></div>
+
+  <div class="tbl" style="margin-top:12px"><table>
+    <tr><th colspan="3">패션</th></tr>
+    <tr><th>매장</th><th>카드 순서</th><th>조건 · 환급</th></tr>
+    <tr><td>유니클로</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> 5만원 <span class="rank">2</span><span class="tag t-kb">KB</span> 초과분</td>
+        <td>네이버 <span class="money">2만원</span> (40%), 1회</td></tr>
+    <tr><td>GU · BAPE · COMME des GARÇONS · BEAMS · HUMAN MADE · KAPITAL · STUSSY</td>
+        <td><span class="rank">1</span><span class="tag t-kb">KB</span> <span class="rank">2</span><span class="tag t-naver">네이버</span></td>
+        <td>유니클로 포함 8개 브랜드 월 합산<br>20만 → <span class="money">2만</span> / 50만 → <span class="money">7만</span> / 100만 → <span class="money">20만원권</span></td></tr>
+    <tr><td>그 외 패션</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> <span class="rank">2</span><span class="tag t-lotte">롯데</span> <span class="rank">3</span><span class="tag t-haru">Haru</span></td>
+        <td>누적 티어 채우기용</td></tr>
+  </table></div>
+
+  <div class="tbl" style="margin-top:12px"><table>
+    <tr><th colspan="3">백화점</th></tr>
+    <tr><th>매장</th><th>카드 순서</th><th>조건 · 환급</th></tr>
+    <tr><td>다이마루(교토·우메다 등) · 파르코 · 한큐 교토점</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> 10만원<br><span class="rank">2</span><span class="tag t-kb">KB</span> 월 50만↑</td>
+        <td>네이버 <span class="money">3만원</span> (30%) · KB <span class="money">10만원권</span> (20%)</td></tr>
+    <tr><td>한큐 우메다 본점 · 한신 우메다 본점 · 고베한큐 · 하카타한큐 · 한큐맨즈 오사카 · 한큐맨즈 도쿄</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> 10만원<br><span class="rank">2</span><span class="tag t-haru">Haru</span> 15,000엔<br><span class="rank">3</span><span class="tag t-kb">KB</span> 월 50만↑</td>
+        <td>위와 동일 + JCB 20%, 최대 <span class="money">3,000엔</span><br><span class="muted">무인양품 · 로프트 · TIFFANY 등 일부 매장 제외</span></td></tr>
+  </table></div>
+</section>
+
+<section id="stay">
+  <h2>숙박 · 온라인 · 기타</h2>
+  <p class="sub">롯데 20만 → Haru 100만 채우는 가장 큰 레버</p>
+  <div class="tbl"><table>
+    <tr><th>항목</th><th>카드</th><th>비고</th></tr>
+    <tr><td>호텔 · 료칸 현지 결제, 해외 사이트 예약, 입장권 앱 결제</td>
+        <td><span class="rank">1</span><span class="tag t-lotte">롯데</span> 20만까지 <span class="rank">2</span><span class="tag t-haru">Haru</span></td>
+        <td>둘 다 해외 온·오프라인 누적 인정 · 롯데 20만 채운 뒤 Haru 100만으로</td></tr>
+    <tr><td>드럭스토어 · 기념품 · 기타 오프라인</td>
+        <td><span class="rank">1</span><span class="tag t-naver">네이버</span> <span class="rank">2</span><span class="tag t-lotte">롯데</span> <span class="rank">3</span><span class="tag t-haru">Haru</span></td>
+        <td>아래 총액별 배분에 따라</td></tr>
+  </table></div>
+</section>
+
+<section id="budget">
+  <h2>총액별 네이버 · 롯데 · Haru 배분</h2>
+  <p class="sub">셋 다 누적형이라 경쟁 관계. 한계 환급률 높은 순으로 채움</p>
+  <div class="rule"><strong>채우는 순서</strong>
+    <ol>
+      <li>네이버 정액 매장 약 30만 (돈키·유니클로·백화점·이치란·편의점 → 약 10만 확정)</li>
+      <li>롯데 0 → 20만 (15%)</li>
+      <li>Haru 0 → 50만 → 100만 (10%) · 큰 결제(숙박)로 채우기 쉬움</li>
+      <li>롯데 20 → 40만 (10%) · 네이버 30 → 50만 (10%)</li>
+      <li>네이버 50 → 150만 (8%) · Haru 100만·롯데 40만 초과분은 무의미</li>
+    </ol>
+  </div>
+  <div class="budget">
+    <div class="bcell"><div class="tot">총 80만</div><div class="split">네이버 30만<br>롯데 40만<br>Haru 10만</div><div class="out">15만<small> + JCB</small></div></div>
+    <div class="bcell"><div class="tot">총 100만</div><div class="split">네이버 30만<br>롯데 20만<br>Haru 50만</div><div class="out">18만<small> + JCB</small></div></div>
+    <div class="bcell"><div class="tot">총 150만</div><div class="split">네이버 30만<br>롯데 20만<br>Haru 100만</div><div class="out">23만<small> + JCB</small></div></div>
+    <div class="bcell"><div class="tot">총 200만</div><div class="split">네이버 60만<br>롯데 40만<br>Haru 100만</div><div class="out">27만<small> + JCB</small></div></div>
+    <div class="bcell"><div class="tot">총 250만</div><div class="split">네이버 110만<br>롯데 40만<br>Haru 100만</div><div class="out">30만<small> + JCB</small></div></div>
+    <div class="bcell"><div class="tot">총 300만↑</div><div class="split">네이버 150만<br>롯데 40만<br>Haru 100만</div><div class="out">35만<small> + JCB</small></div></div>
+  </div>
+  <p class="muted" style="margin-top:10px">KB 상품권은 별도 가산 (돈키 초과분 2만, 패션 20만↑ 2만~, 백화점 50만↑ 10만). JCB 상한 합계 9,000엔.</p>
+</section>
+
+<section id="check">
+  <h2>출발 전 체크</h2>
+  <ul class="check">
+    <li>Uber 앱에 롯데 등록 + 프로모션 코드 입력</li>
+    <li>GO 앱에 Haru(신용) 등록</li>
+    <li>Haru 실물카드 지참 — JCB 캐시백은 실물 결제 조건</li>
+    <li>네이버 첫 결제는 3만원 이상 건으로 시작</li>
+  </ul>
+</section>
+
+<footer>기준일 2026.09.29 · 각 이벤트 조건은 변경될 수 있으니 결제 전 최신 공지 확인</footer>
+</div>
+<script>
+(function(){
+  var KEY='jp-card-log-2026', RKEY='jp-card-rate';
+  var $=function(id){return document.getElementById(id)};
+  var CARD={naver:'네이버',haru:'Haru',lotte:'롯데',kb:'KB'};
+  var CAT={ichiran:'이치란',sushiro:'스시로',komeda:'코메다',food:'식당·카페',cvs:'편의점(세븐·패밀리·로손)',cvs2:'기타 편의점',
+    donki:'돈키호테',uniqlo:'유니클로',kbfashion:'KB 패션 브랜드',dept:'백화점(교토 등)',hankyu:'백화점(한큐한신 우메다 등)',shop:'쇼핑·드럭스토어',
+    go:'택시 GO',uber:'Uber',transit:'대중교통·택시',stay:'숙박·온라인',etc:'기타'};
+  var OFFLINE=['ichiran','sushiro','komeda','food','cvs','cvs2','donki','uniqlo','kbfashion','dept','hankyu','shop','transit','etc'];
+  var rows=[]; var rate=920;
+  function load(){
+    try{var r=localStorage.getItem(KEY); if(r) rows=JSON.parse(r)||[];}catch(e){rows=[]}
+    try{var q=localStorage.getItem(RKEY); if(q) rate=parseFloat(q)||920;}catch(e){}
+  }
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify(rows)); localStorage.setItem(RKEY,String(rate));}catch(e){}
+  }
+  function krw(r){return r.cur==='KRW'?r.amt:Math.round(r.amt*rate/100)}
+  function jpy(r){return r.cur==='JPY'?r.amt:Math.round(r.amt*100/rate)}
+  function fmt(n){return Math.round(n).toLocaleString('ko-KR')}
+  function tier(total,steps){ // steps: [[threshold,reward],...] desc
+    for(var i=0;i<steps.length;i++) if(total>=steps[i][0]) return steps[i];
+    return null;
+  }
+  function nextTier(total,steps){
+    var asc=steps.slice().sort(function(a,b){return a[0]-b[0]});
+    for(var i=0;i<asc.length;i++) if(total<asc[i][0]) return asc[i];
+    return null;
+  }
+  function calc(){
+    var by=function(card){return rows.filter(function(r){return r.card===card})};
+    var sumK=function(list){return list.reduce(function(a,r){return a+krw(r)},0)};
+    var sumJ=function(list){return list.reduce(function(a,r){return a+jpy(r)},0)};
+    var lines=[]; var out={};
+
+    // NAVER
+    var n=by('naver'), nOff=n.filter(function(r){return OFFLINE.indexOf(r.cat)>=0});
+    var nTot=sumK(nOff), np=0, nd=[];
+    if(nOff.some(function(r){return krw(r)>=30000})){np+=10000;nd.push('첫 결제 1만');}
+    var nt=tier(nTot,[[1500000,100000],[1000000,50000],[500000,20000]]);
+    if(nt){np+=nt[1];nd.push('누적 '+fmt(nt[0]/10000)+'만 → '+fmt(nt[1]));}
+    if(nOff.some(function(r){return r.cat==='ichiran'&&krw(r)>=20000})){np+=10000;nd.push('이치란 1만');}
+    if(sumK(nOff.filter(function(r){return r.cat==='cvs'}))>=30000){np+=10000;nd.push('편의점 1만');}
+    if(nOff.some(function(r){return r.cat==='donki'&&krw(r)>=100000})){np+=20000;nd.push('돈키 2만');}
+    if(nOff.some(function(r){return r.cat==='uniqlo'&&krw(r)>=50000})){np+=20000;nd.push('유니클로 2만');}
+    if(nOff.some(function(r){return (r.cat==='dept'||r.cat==='hankyu')&&krw(r)>=100000})){np+=30000;nd.push('백화점 3만');}
+    var nn=nextTier(nTot,[[500000,20000],[1000000,50000],[1500000,100000]]);
+    out.naver={amt:np,spent:nTot,next:nn?('누적 '+fmt(nn[0]/10000)+'만까지 '+fmt(nn[0]-nTot)+'원 남음 (+'+fmt(nn[1])+')'):'누적 최고 구간 달성',d:nd};
+
+    // HARU + JCB
+    var h=by('haru'), hTot=sumK(h), hp=0, hd=[];
+    var ht=tier(hTot,[[1000000,100000],[500000,50000]]);
+    if(ht){hp+=ht[1];hd.push('누적 '+fmt(ht[0]/10000)+'만 → '+fmt(ht[1]));}
+    var jcb=[['sushiro',4000,1000,'스시로'],['komeda',2000,1000,'코메다'],['go',3000,1000,'GO'],['donki',15000,3000,'돈키'],['hankyu',15000,3000,'한큐한신']];
+    jcb.forEach(function(j){
+      var t=sumJ(h.filter(function(r){return r.cat===j[0]}));
+      if(t>=j[1]){var cb=Math.min(Math.floor(t*0.2),j[2]); hp+=Math.round(cb*rate/100); hd.push('JCB '+j[3]+' '+fmt(cb)+'엔');}
+    });
+    var hn=nextTier(hTot,[[500000,50000],[1000000,100000]]);
+    out.haru={amt:hp,spent:hTot,next:hn?('누적 '+fmt(hn[0]/10000)+'만까지 '+fmt(hn[0]-hTot)+'원 남음 (+'+fmt(hn[1])+')'):'100만 달성, 초과분 무의미',d:hd};
+
+    // LOTTE
+    var l=by('lotte'), lTot=sumK(l), lp=0, ld=[];
+    var lt=tier(lTot,[[400000,50000],[200000,30000],[100000,15000]]);
+    if(lt){lp+=lt[1];ld.push('합산 '+fmt(lt[0]/10000)+'만 → '+fmt(lt[1])+'P');}
+    var ln=nextTier(lTot,[[100000,15000],[200000,30000],[400000,50000]]);
+    out.lotte={amt:lp,spent:lTot,next:ln?('합산 '+fmt(ln[0]/10000)+'만까지 '+fmt(ln[0]-lTot)+'원 남음 (+'+fmt(ln[1])+')'):'40만 달성, 초과분 무의미',d:ld};
+
+    // KB
+    var k=by('kb'), kTot=sumK(k), kp=0, kd=[];
+    var kf=sumK(k.filter(function(r){return r.cat==='uniqlo'||r.cat==='kbfashion'}));
+    var kft=tier(kf,[[1000000,200000],[500000,70000],[200000,20000]]);
+    if(kft){kp+=kft[1];kd.push('패션 '+fmt(kft[0]/10000)+'만 → '+fmt(kft[1])+'원권');}
+    var kdp=sumK(k.filter(function(r){return r.cat==='dept'||r.cat==='hankyu'}));
+    if(kdp>=500000){kp+=100000;kd.push('백화점 10만원권');}
+    if(k.some(function(r){return r.cat==='donki'&&krw(r)>=100000})){kp+=20000;kd.push('돈키 2만원권');}
+    var kn=[]; var kfn=nextTier(kf,[[200000,20000],[500000,70000],[1000000,200000]]);
+    if(kfn) kn.push('패션 '+fmt(kfn[0]/10000)+'만까지 '+fmt(kfn[0]-kf)+'원');
+    if(kdp<500000) kn.push('백화점 50만까지 '+fmt(500000-kdp)+'원');
+    out.kb={amt:kp,spent:kTot,next:kn.join(' · ')||'조건 달성',d:kd};
+
+    return out;
+  }
+  function render(){
+    var o=calc(), tot=0, html='';
+    [['naver','네이버','t-naver'],['haru','Haru + JCB','t-haru'],['lotte','롯데','t-lotte'],['kb','KB','t-kb']].forEach(function(c){
+      var x=o[c[0]]; tot+=x.amt;
+      html+='<div class="bcell"><div class="tot"><span class="tag '+c[2]+'">'+c[1]+'</span></div><div class="split">결제 '+fmt(x.spent)+'원</div><div class="out">'+fmt(x.amt)+'<small>원</small></div><div class="nxt">'+x.next+'</div></div>';
+    });
+    var spentAll=rows.reduce(function(a,r){return a+krw(r)},0);
+    html='<div class="bcell total"><div class="tot">총 결제 '+fmt(spentAll)+'원 · 예상 환급 합계</div><div class="out">'+fmt(tot)+'<small>원</small></div><div class="nxt">'+(spentAll?('실질 환급률 '+(tot/spentAll*100).toFixed(1)+'%'):'첫 기록을 추가하세요')+'</div></div>'+html;
+    $('sum').innerHTML=html;
+    var det='';
+    ['naver','haru','lotte','kb'].forEach(function(k){ if(o[k].d.length) det+='<li>'+CARD[k]+': '+o[k].d.join(', ')+'</li>'; });
+    $('detail').innerHTML=det;
+    var tb=$('log').tBodies[0]; var lh='';
+    if(!rows.length){lh='<tr><td class="empty" colspan="6">아직 기록이 없습니다</td></tr>';}
+    rows.slice().reverse().forEach(function(r,i){
+      var idx=rows.length-1-i;
+      lh+='<tr><td>'+(r.date||'')+'</td><td><span class="tag t-'+r.card+'">'+CARD[r.card]+'</span></td><td>'+CAT[r.cat]+(r.memo?'<br><span class="muted">'+r.memo+'</span>':'')+'</td><td class="money">'+(r.cur==='JPY'?'¥'+fmt(r.amt):'₩'+fmt(r.amt))+'</td><td class="muted">≈'+fmt(krw(r))+'원</td><td><button class="btn ghost sm" data-del="'+idx+'" type="button">삭제</button></td></tr>';
+    });
+    tb.innerHTML=lh;
+  }
+  load();
+  $('f-rate').value=rate;
+  $('f-date').value=new Date().toISOString().slice(0,10);
+  $('f-add').addEventListener('click',function(){
+    var amt=parseFloat($('f-amt').value); if(!amt||amt<=0){$('f-amt').focus();return;}
+    rows.push({date:$('f-date').value,card:$('f-card').value,cat:$('f-cat').value,amt:amt,cur:$('f-cur').value,memo:$('f-memo').value.trim()});
+    $('f-amt').value='';$('f-memo').value=''; save(); render();
+  });
+  $('f-rate').addEventListener('change',function(){rate=parseFloat(this.value)||920;save();render();});
+  $('log').addEventListener('click',function(e){var b=e.target.closest('[data-del]');if(!b)return;rows.splice(+b.getAttribute('data-del'),1);save();render();});
+  $('t-clear').addEventListener('click',function(){if(confirm('모든 기록을 삭제할까요?')){rows=[];save();render();}});
+  $('t-export').addEventListener('click',function(){$('io').style.display='block';$('io-text').value=JSON.stringify(rows);$('io-apply').style.display='none';});
+  $('t-import').addEventListener('click',function(){$('io').style.display='block';$('io-text').value='';$('io-apply').style.display='inline-block';$('io-text').focus();});
+  $('io-apply').addEventListener('click',function(){try{var v=JSON.parse($('io-text').value);if(Array.isArray(v)){rows=v;save();render();$('io').style.display='none';}}catch(e){alert('형식이 올바르지 않습니다');}});
+  render();
+})();
+</script>
+</body>
+</html>
